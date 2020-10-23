@@ -13,69 +13,161 @@
     <div class="page-content">
         <div class="block">
             <div class="row">
-                <div class="col">PUNTAJES</div>
-                <div class="col">Jugador 1</div>
-                <div class="col">Jugador 2</div>
+                <div class="col color-theme-black">PUNTAJES</div>
+                <div class="col col-n2">Jugador 1</div>
+                <div class="col col-n3">Jugador 2</div>
             </div>
             <div class="row">
                 <div class="col">UNO</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">DOS</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">TRES</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">CRUATRO</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">CINCO</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">SEIS</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-dado">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">ESCALERA</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-juego">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-juego">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">FULL</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-juego">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-juego">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">POKER</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-juego">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-juego">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">GENERALA</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-juego">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-juego">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">DOBLE GENERALA</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2"><p><a class="button popup-open" href="#" data-popup=".popup-juego">-</a></p></div>
+                <div class="col col-n3"><p><a class="button popup-open" href="#" data-popup=".popup-juego">-</a></p></div>
             </div>
             <div class="row">
                 <div class="col">TOTAL</div>
-                <div class="col">0</div>
-                <div class="col">0</div>
+                <div class="col col-n2">0</div>
+                <div class="col col-n3">0</div>
+            </div>
+            <div class="popup popup-dado">
+                <div class="block">
+                  <p id="num-dado"></p>
+                  <p><a class="link popup-close" href="#">Cerrar</a></p>
+                  <div class="list">
+                      <ul>
+                        <li>
+                          <label class="item-radio item-radio-icon-end item-content">
+                            <input type="radio" name="demo-radio-end" value="Books" checked />
+                            <i class="icon icon-radio"></i>
+                            <div class="item-inner">
+                              <div class="item-title">1</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-radio item-radio-icon-end item-content">
+                            <input type="radio" name="demo-radio-end" value="Books" checked />
+                            <i class="icon icon-radio"></i>
+                            <div class="item-inner">
+                              <div class="item-title">2</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-radio item-radio-icon-end item-content">
+                            <input type="radio" name="demo-radio-end" value="Books" checked />
+                            <i class="icon icon-radio"></i>
+                            <div class="item-inner">
+                              <div class="item-title">3</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-radio item-radio-icon-end item-content">
+                            <input type="radio" name="demo-radio-end" value="Books" checked />
+                            <i class="icon icon-radio"></i>
+                            <div class="item-inner">
+                              <div class="item-title">4</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-radio item-radio-icon-end item-content">
+                            <input type="radio" name="demo-radio-end" value="Books" checked />
+                            <i class="icon icon-radio"></i>
+                            <div class="item-inner">
+                              <div class="item-title">5</div>
+                            </div>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="popup popup-juego">
+                <div class="block">
+                  <p id="num-dado"></p>
+                  <p><a class="link popup-close" href="#">Cerrar</a></p>
+                  <div class="list">
+                      <ul>
+                        <li>
+                          <label class="item-radio item-radio-icon-end item-content">
+                            <input type="radio" name="demo-radio-end" value="Books" checked />
+                            <i class="icon icon-radio"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Servido</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-radio item-radio-icon-end item-content">
+                            <input type="radio" name="demo-radio-end" value="Books" checked />
+                            <i class="icon icon-radio"></i>
+                            <div class="item-inner">
+                              <div class="item-title">No servido</div>
+                            </div>
+                          </label>
+                        </li>
+                        <li>
+                          <label class="item-radio item-radio-icon-end item-content">
+                            <input type="radio" name="demo-radio-end" value="Books" checked />
+                            <i class="icon icon-radio"></i>
+                            <div class="item-inner">
+                              <div class="item-title">Tachar</div>
+                            </div>
+                          </label>
+                        </li>
+                      </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
