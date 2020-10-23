@@ -128,12 +128,24 @@ input[type=text]{
     height: 50px;
 }
 
+input[type=submit]{
+    border: 1px solid #444444;
+    color: white;
+    background-color: #0092C5;
+}
+
+input[type=submit]:active{
+    background-color:  #0DB4EE;
+}
+
+#BTNJugar{
+    background-color: #1058E7;
+    color:white;
+}
+
 .row{
     border-top: 1px solid #444444;
     border-bottom: 1px solid #444444;
-}
-
-.col66{
     display: flex;
-    align-items: center;
+    justify-content: center;
 }
