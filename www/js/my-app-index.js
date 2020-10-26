@@ -46,4 +46,16 @@ $$(document).on('page:init', '.page[data-name="about"]', function (e) {
     console.log(e);
     alert('Hello');
 })
+var equipo1, equipo2;
+$$(document).on('page:init', '.page[data-name="index"]', function (e) {
+    $$('#BTNJugar').on('click', function(){
+        console.log("Entro");
+        equipo1 = $$("#Jugador1TXT").val();   
+        equipo2 = $$("#Jugador2TXT").val();   
+    });
+})
 
+$$(document).on('page:init', '.page[data-name="anotador"]', function (e) {
+    $$("#j1").val(equipo1);
+    $$("#j2").val(equipo2);       
+})
