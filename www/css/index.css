@@ -130,6 +130,9 @@ p, h1{
     background-color: #1058E7;
 }
 
+.toolbar{
+   background-color: #1058E7;
+}
 input[type=text]{
     color:white;
     width: 100%;
@@ -151,6 +154,16 @@ input[type=submit]:active{
 }
 
 #BTNJugar{
+    background-color: #1058E7;
+    color:white;
+}
+
+#BTNTerminar{
+    background-color: #1058E7;
+    color:white;
+}
+
+#BTNLimpiar{
     background-color: #1058E7;
     color:white;
 }
