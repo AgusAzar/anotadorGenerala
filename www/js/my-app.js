@@ -1,4 +1,8 @@
-  
+var cantidadEquipos = 2;
+var equipo1, equipo2;
+var equipo = [];
+var columnasDados=['-1','-2','-3','-4','-5','-6'];
+var columnasJuegos=['-E','-F','-P','-G','-DG','-T'];
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
 
@@ -33,17 +37,34 @@ var mainView = app.views.create('.view-main');
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 });
-
-// Option 1. Using one 'page:init' handler for all pages
-$$(document).on('page:init', function (e) {
-    // Do something here when page loaded and initialized
-    console.log(e);
+$$(document).on('page:init', '.page[data-name="index"]', function (e) {
+    $$('#BTNJugar').on('click', function(){
+        console.log("Entro");
+        equipo1 = $$("#Jugador1TXT").val();   
+        equipo[0] = equipo1;
+        equipo2 = $$("#Jugador2TXT").val();   
+        equipo[1] = equipo2;
+    });
 })
 
-// Option 2. Using live 'page:init' event handlers for each page
-$$(document).on('page:init', '.page[data-name="about"]', function (e) {
-    // Do something here when page with data-name="about" attribute loaded and initialized
-    console.log(e);
-    alert('Hello');
+$$(document).on('page:init', '.page[data-name="anotador"]', function (e) {
+    $$("#j1").val(equipo1);
+    $$("#j2").val(equipo2);       
+    for(var i=0;i<cantidadEquipos;i++){
+        dibujarColumna(i+1);    
+        console.log(i)
+    }
 })
 
+
+const dibujarColumna = function(numero){
+    idColumna = 'columna'+numero
+    $$('#tabla').append('<div id="'+idColumna+'" class="col-20"></div>');
+    $$('#'+idColumna).append('<div id="j'+numero+'" class="row">'+equipo[numero-1]+'</div>')
+    for(var i = 0; i<columnasDados.length; i++){
+        $$('#'+idColumna).append('<div id="j'+numero+'p'+columnasDados[i]+'" class="row dado">dado</div>')
+    } 
+    for(var i = 0; i<columnasJuegos.length; i++){
+        $$('#'+idColumna).append('<div id="j'+numero+'p'+columnasJuegos[i]+'" class="row juego">juego</div>')
+    } 
+}

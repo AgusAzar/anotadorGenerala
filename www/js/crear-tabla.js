@@ -1,6 +1,5 @@
 var columnasDados=['-1','-2','-3','-4','-5','-6'];
 var columnasJuegos=['-E','-F','-P','-G','-DG','-T'];
-var nombres=['hola'];
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
 
