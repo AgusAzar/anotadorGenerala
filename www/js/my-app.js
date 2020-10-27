@@ -1,8 +1,9 @@
 var cantidadEquipos = 2;
-var equipo1, equipo2;
+var equipo1, equipo2, punteroid;
 var equipo = [];
 var columnasDados=['-1','-2','-3','-4','-5','-6'];
-var columnasJuegos=['-E','-F','-P','-G','-DG','-T'];
+var columnasJuegos=['-E','-F','-P','-G','-DG'];
+var puntosJuegos={E:20,F:30,P:40,G:50,DG:100}
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
 
@@ -33,6 +34,91 @@ var app = new Framework7({
 
 var mainView = app.views.create('.view-main');
 
+var actionDados = app.actions.create({
+  buttons: [
+    [
+      {
+        text:'Dado',
+        label: true
+      },
+      {
+        text:'Uno',
+        onClick: function(){
+        puntosDados(1);
+        }
+      },
+      {
+        text:'Dos',
+        onClick: function(){
+          puntosDados(2);
+        }
+      },
+      {
+        text:'Tres',
+        onClick: function(){
+          puntosDados(3);
+        }
+      },
+      {
+        text:'Cuatro',
+        onClick: function(){
+          puntosDados(4);
+        }
+      },
+      {
+        text:'Cinco',
+        onClick: function(){
+          puntosDados(5);
+        }
+      },
+      {
+        text:'Seis',
+        onClick: function(){
+          puntosDados(6);
+        }
+      },
+    ],
+    [
+      {
+        text:'Tachar',
+        onClick: function(){
+          puntosDados('x');
+        }
+      }
+    ]
+  ]
+});
+
+var actionJuegos = app.actions.create({
+  buttons: [
+    [
+      {
+        text:'Juego',
+        label: true
+      },
+      {
+        text:'Armada',
+        onClick: function(){
+            anotarJuegos('armada')
+        }
+      }, {
+        text:'Servida',
+        onClick: function(){
+            anotarJuegos('servida')
+        }
+      },
+    ],
+    [
+      {
+        text:'Tachar',
+        onClick: function(){
+            anotarJuegos('tachar')
+        }
+      }
+    ]
+  ]
+});
+
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
@@ -54,6 +140,14 @@ $$(document).on('page:init', '.page[data-name="anotador"]', function (e) {
         dibujarColumna(i+1);    
         console.log(i)
     }
+    $$('.dado').on('click', function(){
+      punteroid=$$(this).attr("id");
+      actionDados.open();
+    });
+    $$('.juego').on('click', function(){
+      punteroid=$$(this).attr("id");
+      actionJuegos.open();
+    });
 })
 
 
@@ -62,9 +156,46 @@ const dibujarColumna = function(numero){
     $$('#tabla').append('<div id="'+idColumna+'" class="col-20"></div>');
     $$('#'+idColumna).append('<div id="j'+numero+'" class="row">'+equipo[numero-1]+'</div>')
     for(var i = 0; i<columnasDados.length; i++){
-        $$('#'+idColumna).append('<div id="j'+numero+'p'+columnasDados[i]+'" class="row dado">dado</div>')
+        $$('#'+idColumna).append('<a href="#" id="j'+numero+'p'+columnasDados[i]+'" class="row dado">-</div>')
     } 
     for(var i = 0; i<columnasJuegos.length; i++){
-        $$('#'+idColumna).append('<div id="j'+numero+'p'+columnasJuegos[i]+'" class="row juego">juego</div>')
+        $$('#'+idColumna).append('<a href="#" id="j'+numero+'p'+columnasJuegos[i]+'" class="row juego">-</div>')
     } 
+    $$('#'+idColumna).append('<div id="j'+numero+'-T" class="row">0</div>')
+}
+
+function puntosDados(cantidadDados){
+    console.log(cantidadDados)
+    var texto = parseInt(punteroid[4])*cantidadDados;
+    $$('#'+punteroid).text(texto);
+}
+
+function anotarJuegos(estado){
+    if(estado == "tachar")
+    {
+        $$('#'+punteroid).text('x');
+    }
+    else{
+        var juego = punteroid.split('-');
+        var puntosBase = puntosJuegos[juego[1]]
+        if(estado =="armada")
+        {
+            var puntosTotales = puntosBase;
+        }
+        else
+        {
+            if(punteroid.includes('G'))
+            {
+                generalaServida();
+            }
+            else{
+                var puntosTotales = puntosBase + 5;
+                $$('#'+punteroid).text(puntosTotales);
+            }
+        }
+    }
+}
+function generalaServida(){
+    var numeroJugador = punteroid[1]
+    alert('El jugador '+equipo[numeroJugador - 1]+' ha ganado')
 }
