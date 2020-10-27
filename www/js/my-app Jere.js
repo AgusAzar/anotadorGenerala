@@ -35,79 +35,87 @@ var mainView = app.views.create('.view-main');
 
 var ac1 = app.actions.create({
   buttons: [
-    {
-      text:'Dado',
-      label: true
-    },
-    {
-      text:'Uno',
-      onClick: function(){
+    [
+      {
+        text:'Dado',
+        label: true
+      },
+      {
+        text:'Uno',
+        onClick: function(){
         puntosDados(1);
+        }
+      },
+      {
+        text:'Dos',
+        onClick: function(){
+          puntosDados(2);
+        }
+      },
+      {
+        text:'Tres',
+        onClick: function(){
+          puntosDados(3);
+        }
+      },
+      {
+        text:'Cuatro',
+        onClick: function(){
+          puntosDados(4);
+        }
+      },
+      {
+        text:'Cinco',
+        onClick: function(){
+          puntosDados(5);
+        }
+      },
+      {
+        text:'Seis',
+        onClick: function(){
+          puntosDados(6);
+        }
+      },
+    ],
+    [
+      {
+        text:'Tachar',
+        onClick: function(){
+          puntosDados('x');
+        }
       }
-    },
-    {
-      text:'Dos',
-      onClick: function(){
-        puntosDados(2);
-      }
-    },
-    {
-      text:'Tres',
-      onClick: function(){
-        puntosDados(3);
-      }
-    },
-    {
-      text:'Cuatro',
-      onClick: function(){
-        puntosDados(4);
-      }
-    },
-    {
-      text:'Cinco',
-      onClick: function(){
-        puntosDados(5);
-      }
-    },
-    {
-      text:'Seis',
-      onClick: function(){
-        puntosDados(6);
-      }
-    },
-    {
-      text:'Tachar',
-      onClick: function(){
-        puntosDados('x');
-      }
-    },
+    ]
   ]
 });
 
 var ac2 = app.actions.create({
   buttons: [
-    {
-      text:'Juego',
-      label: true
-    },
-    {
-      text:'Armada',
-      onClick: function(){
-        console.log("Funciona");
+    [
+      {
+        text:'Juego',
+        label: true
+      },
+      {
+        text:'Armada',
+        onClick: function(){
+          console.log("Funciona");
+        }
+      },
+      {
+        text:'Servida',
+        onClick: function(){
+          console.log("Funciona");
+        }
+      },
+    ],
+    [
+      {
+        text:'Tachar',
+        onClick: function(){
+          console.log("Funciona");
+        }
       }
-    },
-    {
-      text:'Servida',
-      onClick: function(){
-        console.log("Funciona");
-      }
-    },
-    {
-      text:'Tachar',
-      onClick: function(){
-        console.log("Funciona");
-      }
-    },
+    ]
   ]
 });
 
@@ -156,4 +164,5 @@ const dibujarColumna = function(numero){
 }
 
 function puntosDados(cantidadDados){
+  console.log(cantidadDados);
 }
