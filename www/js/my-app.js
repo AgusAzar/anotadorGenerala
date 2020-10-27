@@ -45,36 +45,42 @@ var actionDados = app.actions.create({
         text:'Uno',
         onClick: function(){
         puntosDados(1);
+        calcularTotal();
         }
       },
       {
         text:'Dos',
         onClick: function(){
           puntosDados(2);
+          calcularTotal();
         }
       },
       {
         text:'Tres',
         onClick: function(){
           puntosDados(3);
+          calcularTotal();
         }
       },
       {
         text:'Cuatro',
         onClick: function(){
           puntosDados(4);
+          calcularTotal();
         }
       },
       {
         text:'Cinco',
         onClick: function(){
           puntosDados(5);
+          calcularTotal();
         }
       },
       {
         text:'Seis',
         onClick: function(){
           puntosDados(6);
+          calcularTotal();
         }
       },
     ],
@@ -83,6 +89,7 @@ var actionDados = app.actions.create({
         text:'Tachar',
         onClick: function(){
           puntosDados('x');
+          calcularTotal();
         }
       }
     ]
@@ -100,11 +107,13 @@ var actionJuegos = app.actions.create({
         text:'Armada',
         onClick: function(){
             anotarJuegos('armada')
+            calcularTotal();
         }
       }, {
         text:'Servida',
         onClick: function(){
             anotarJuegos('servida')
+            calcularTotal();
         }
       },
     ],
@@ -113,6 +122,7 @@ var actionJuegos = app.actions.create({
         text:'Tachar',
         onClick: function(){
             anotarJuegos('tachar')
+            calcularTotal();
         }
       }
     ]
@@ -198,4 +208,67 @@ function anotarJuegos(estado){
 function generalaServida(){
     var numeroJugador = punteroid[1]
     alert('El jugador '+equipo[numeroJugador - 1]+' ha ganado')
+}
+
+function calcularTotal(){
+
+  var total1 = 0;
+  var total2 = 0;
+  var final = 0;
+  for(var i = 0;i<columnasDados.length;i++)
+  {
+    if($$('#j1p' + columnasDados[i]).text() == "-" || $$('#j2p' + columnasDados[i]).text() == "-")
+      final++;
+      
+      if($$('#j1p' + columnasDados[i]).text() != "-")
+      {
+         var suma1 = $$('#j1p' + columnasDados[i]).text();
+      }
+      if($$('#j2p' + columnasDados[i]).text() != "-")
+      {
+         var suma2 = $$('#j2p' + columnasDados[i]).text();
+      }
+  }
+  for(var i = 0;i<columnasJuegos.length;i++)
+  {
+    if($$('#j1p' + columnasJuegos[i]).text() == "-" || $$('#j2p' + columnasJuegos[i]).text() == "-")
+      final++;
+      
+      if($$('#j1p' + columnasJuegos[i]).text() != "-")
+      {
+         var suma1 = $$('#j1p' + columnasJuegos[i]).text();
+      }
+      if($$('#j2p' + columnasJuegos[i]).text() != "-")
+      {
+         var suma2 = $$('#j2p' + columnasJuegos[i]).text();
+      }
+  }
+  if(final == 0)
+  {
+    for(var i = 0;i<columnasDados.length;i++)
+    {
+      if($$('#j1p' + columnasDados[i]).text() != "X")
+      {
+         var suma1 = $$('#j1p' + columnasDados[i]).text();
+         var suma2 = $$('#j2p' + columnasDados[i]).text();
+         total1 += Number(suma1);
+         total2 += Number(suma2);
+      }
+    }
+    for(var i = 0;i<columnasJuegos.length;i++)
+    {
+      if($$('#j2p' + columnasDados[i]).text() != "X")
+      {
+         var suma1 = $$('#j1p' + columnasJuegos[i]).text();
+         var suma2 = $$('#j2p' + columnasJuegos[i]).text();
+         total1 += Number(suma1);
+         total2 += Number(suma2);
+      }
+    }
+    $$('#j1p-T').text(total1);
+    $$('#j2p-T').text(total2);
+  }
+
+  console.log("total 1" + total1);
+
 }
