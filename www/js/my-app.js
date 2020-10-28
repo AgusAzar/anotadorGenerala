@@ -1,5 +1,5 @@
 var cantidadEquipos = 2;
-var equipo1, equipo2, punteroid;
+var punteroid;
 var equipo = [];
 var columnasDados=['-1','-2','-3','-4','-5','-6'];
 var columnasJuegos=['-E','-F','-P','-G','-DG'];
@@ -125,18 +125,13 @@ $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 });
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
-    $$('#BTNJugar').on('click', function(){
-        console.log("Entro");
-        equipo1 = $$("#Jugador1TXT").val();   
-        equipo[0] = equipo1;
-        equipo2 = $$("#Jugador2TXT").val();   
-        equipo[1] = equipo2;
-    });
 })
 
 $$(document).on('page:init', '.page[data-name="anotador"]', function (e) {
-    $$("#j1").val(equipo1);
-    $$("#j2").val(equipo2);       
+    for(var i = 1; i <= cantidadEquipos; i++){
+        console.log('adentro')
+        equipo[i-1] = $$("#Jugador"+i+"TXT").val() || 'equipo '+i;   
+    }
     for(var i=0;i<cantidadEquipos;i++){
         dibujarColumna(i+1);    
         console.log(i)
@@ -247,6 +242,7 @@ function terminar(){
     router.back();
     $$("#Jugador1TXT").val("");
     $$("#Jugador2TXT").val("");
+    equipo = [];
   }
 function limpar(){
     router.refreshPage();
