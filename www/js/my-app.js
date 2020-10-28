@@ -200,10 +200,8 @@ function anotarJuegos(estado){
         if(punteroid.includes('G'))
         {
           generalaServida();
+            puntosTotales='Ganador'
         }
-          else{
-
-          }
       }
       $$('#'+punteroid).text(puntosTotales);
     }
@@ -212,6 +210,7 @@ function anotarJuegos(estado){
 function generalaServida(){
     var numeroJugador = punteroid[1]
     alert('El jugador '+equipo[numeroJugador - 1]+' ha ganado')
+    terminar();
 }
 
 function calcularTotal(){
