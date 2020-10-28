@@ -44,43 +44,37 @@ var actionDados = app.actions.create({
       {
         text:'Uno',
         onClick: function(){
-        puntosDados(1);
-        calcularTotal();
+          puntosDados(1);
         }
       },
       {
         text:'Dos',
         onClick: function(){
           puntosDados(2);
-          calcularTotal();
         }
       },
       {
         text:'Tres',
         onClick: function(){
           puntosDados(3);
-          calcularTotal();
         }
       },
       {
         text:'Cuatro',
         onClick: function(){
           puntosDados(4);
-          calcularTotal();
         }
       },
       {
         text:'Cinco',
         onClick: function(){
           puntosDados(5);
-          calcularTotal();
         }
       },
       {
         text:'Seis',
         onClick: function(){
           puntosDados(6);
-          calcularTotal();
         }
       },
     ],
@@ -89,7 +83,6 @@ var actionDados = app.actions.create({
         text:'Tachar',
         onClick: function(){
           puntosDados('x');
-          calcularTotal();
         }
       }
     ]
@@ -107,13 +100,11 @@ var actionJuegos = app.actions.create({
         text:'Armada',
         onClick: function(){
             anotarJuegos('armada')
-            calcularTotal();
         }
       }, {
         text:'Servida',
         onClick: function(){
             anotarJuegos('servida')
-            calcularTotal();
         }
       },
     ],
@@ -122,7 +113,6 @@ var actionJuegos = app.actions.create({
         text:'Tachar',
         onClick: function(){
             anotarJuegos('tachar')
-            calcularTotal();
         }
       }
     ]
@@ -176,34 +166,41 @@ const dibujarColumna = function(numero){
 
 function puntosDados(cantidadDados){
     console.log(cantidadDados)
-    var texto = parseInt(punteroid[4])*cantidadDados;
-    $$('#'+punteroid).text(texto);
+    if(cantidadDados=="x")
+    {
+      $$('#'+punteroid).text('X');
+    }
+    else
+    {
+      var texto = parseInt(punteroid[4])*cantidadDados;
+      $$('#'+punteroid).text(texto);
+    }
+    calcularTotal();
 }
 
 function anotarJuegos(estado){
-    if(estado == "tachar")
+    if(estado=="tachar")
     {
-        $$('#'+punteroid).text('x');
+        $$('#'+punteroid).text('X');
     }
-    else{
-        var juego = punteroid.split('-');
-        var puntosBase = puntosJuegos[juego[1]]
-        if(estado =="armada")
+    else
+    {
+      var juego=punteroid.split('-');
+      var puntosTotales=puntosJuegos[juego[1]]
+      if(estado=="servida")
+      {
+        puntosTotales+=5;
+        if(punteroid.includes('G'))
         {
-            var puntosTotales = puntosBase;
+          generalaServida();
         }
-        else
-        {
-            if(punteroid.includes('G'))
-            {
-                generalaServida();
-            }
-            else{
-                var puntosTotales = puntosBase + 5;
-                $$('#'+punteroid).text(puntosTotales);
-            }
-        }
+          else{
+
+          }
+      }
+      $$('#'+punteroid).text(puntosTotales);
     }
+    calcularTotal();
 }
 function generalaServida(){
     var numeroJugador = punteroid[1]
@@ -211,64 +208,31 @@ function generalaServida(){
 }
 
 function calcularTotal(){
-
-  var total1 = 0;
-  var total2 = 0;
-  var final = 0;
-  for(var i = 0;i<columnasDados.length;i++)
-  {
-    if($$('#j1p' + columnasDados[i]).text() == "-" || $$('#j2p' + columnasDados[i]).text() == "-")
-      final++;
-      
-      if($$('#j1p' + columnasDados[i]).text() != "-")
+  var x=punteroid[1];
+  var suma=0, puntos;
+    for(var i=0;i<columnasDados.length;i++){
+      puntos=$$('#j'+x+'p'+columnasDados[i]).text();
+      if(puntos=="-"||puntos=="X")
       {
-         var suma1 = $$('#j1p' + columnasDados[i]).text();
+        suma+=0;
       }
-      if($$('#j2p' + columnasDados[i]).text() != "-")
+      else
       {
-         var suma2 = $$('#j2p' + columnasDados[i]).text();
+        suma+=parseInt(puntos);
       }
-  }
-  for(var i = 0;i<columnasJuegos.length;i++)
-  {
-    if($$('#j1p' + columnasJuegos[i]).text() == "-" || $$('#j2p' + columnasJuegos[i]).text() == "-")
-      final++;
-      
-      if($$('#j1p' + columnasJuegos[i]).text() != "-")
-      {
-         var suma1 = $$('#j1p' + columnasJuegos[i]).text();
-      }
-      if($$('#j2p' + columnasJuegos[i]).text() != "-")
-      {
-         var suma2 = $$('#j2p' + columnasJuegos[i]).text();
-      }
-  }
-  if(final == 0)
-  {
-    for(var i = 0;i<columnasDados.length;i++)
-    {
-      if($$('#j1p' + columnasDados[i]).text() != "X")
-      {
-         var suma1 = $$('#j1p' + columnasDados[i]).text();
-         var suma2 = $$('#j2p' + columnasDados[i]).text();
-         total1 += Number(suma1);
-         total2 += Number(suma2);
-      }
+      console.log(suma)
     }
-    for(var i = 0;i<columnasJuegos.length;i++)
-    {
-      if($$('#j2p' + columnasDados[i]).text() != "X")
+    for(var i=0;i<columnasJuegos.length;i++){
+      puntos=$$('#j'+x+'p'+columnasJuegos[i]).text();
+      if(puntos=="-"||puntos=="X")
       {
-         var suma1 = $$('#j1p' + columnasJuegos[i]).text();
-         var suma2 = $$('#j2p' + columnasJuegos[i]).text();
-         total1 += Number(suma1);
-         total2 += Number(suma2);
+        suma+=0;
       }
+      else
+      {
+        suma+=parseInt(puntos);
+      }
+      console.log(suma)
     }
-    $$('#j1p-T').text(total1);
-    $$('#j2p-T').text(total2);
-  }
-
-  console.log("total 1" + total1);
-
+  $$('#j'+x+'-T').text(suma);
 }
