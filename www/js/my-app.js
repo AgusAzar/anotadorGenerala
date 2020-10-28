@@ -242,9 +242,12 @@ function calcularTotal(){
     }
   $$('#j'+x+'-T').text(suma);
 }
+
 function terminar(){
     router.back();
-}
+    $$("#Jugador1TXT").val("");
+    $$("#Jugador2TXT").val("");
+  }
 function limpar(){
     router.refreshPage();
 }
