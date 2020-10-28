@@ -33,6 +33,7 @@ var app = new Framework7({
   });
 
 var mainView = app.views.create('.view-main');
+var router = mainView.router;
 
 var actionDados = app.actions.create({
   buttons: [
@@ -148,6 +149,12 @@ $$(document).on('page:init', '.page[data-name="anotador"]', function (e) {
       punteroid=$$(this).attr("id");
       actionJuegos.open();
     });
+    $$('#BTNTerminar').on('click',function(){
+        terminar();
+    })
+    $$('#BTNLimpiar').on('click',function(){
+        limpar();
+    })
 })
 
 
@@ -235,4 +242,10 @@ function calcularTotal(){
       console.log(suma)
     }
   $$('#j'+x+'-T').text(suma);
+}
+function terminar(){
+    router.back();
+}
+function limpar(){
+    router.refreshPage();
 }
