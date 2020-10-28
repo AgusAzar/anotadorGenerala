@@ -218,7 +218,6 @@ function calcularTotal(){
       {
         suma+=parseInt($$('#j'+x+'p'+columnasDados[i]).text());
       }
-      console.log(suma)
     }
     for(var i=0;i<columnasJuegos.length;i++){
       puntos=$$('#j'+x+'p'+columnasJuegos[i]).text();
@@ -230,7 +229,6 @@ function calcularTotal(){
       {
         suma+=parseInt($$('#j'+x+'p'+columnasJuegos[i]).text());
       }
-      console.log(suma)
     }
   $$('#j'+x+'-T').text(suma);
 }
