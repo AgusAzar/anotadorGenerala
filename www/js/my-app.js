@@ -35,19 +35,11 @@ var app = new Framework7({
 var mainView = app.views.create('.view-main');
 var router = mainView.router;
 
-var action12 = app.actions.create({
+var actionJugadores = app.actions.create({
   buttons: [
     {
       text:'Elija la cantidad de jugadores',
       label: true
-    },
-    {
-      text:'Uno',
-      onClick: function(){
-        $$('#BTNJugadores').val('UNO');
-        cantidadEquipos=1;
-        ocultar(cantidadEquipos);
-      }
     },
     {
       text:'Dos',
@@ -183,14 +175,14 @@ $$(document).on('deviceready', function() {
 });
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
   $$('#BTNJugadores').on('click',function(){
-    action12.open();
+    actionJugadores.open();
   });
 })
 
 $$(document).on('page:init', '.page[data-name="anotador"]', function (e) {
     for(var i = 1; i <= cantidadEquipos; i++){
         console.log('adentro')
-        equipo[i-1] = $$("#Jugador"+i+"TXT").val() || 'equipo '+i;   
+        equipo[i-1] = $$("#Jugador"+i+"TXT").val() || 'jugador '+i;   
     }
     for(var i=0;i<cantidadEquipos;i++){
         dibujarColumna(i+1);    
