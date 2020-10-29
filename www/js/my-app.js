@@ -1,7 +1,5 @@
 var cantidadEquipos=2;
 var punteroid;
-var numeroDado;
-var tipoJuego;
 var equipo = [];
 var columnasDados=['-1','-2','-3','-4','-5','-6'];
 var columnasJuegos=['-E','-F','-P','-G','-DG'];
@@ -98,7 +96,7 @@ var actionDados = app.actions.create({
   buttons: [
     [
       {
-        text:'Dado'
+        text:'Dado',
         label: true
       },
       {
