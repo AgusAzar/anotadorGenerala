@@ -178,3 +178,12 @@ input[type=submit]:active{
 .actions-button-text{
     color: black;
 }
+
+.visible{
+    display: flex;
+    visibility: visible;  
+}
+.oculto{
+    display: none;
+    visibility: hidden;
+}
