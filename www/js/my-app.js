@@ -1,4 +1,4 @@
-var cantidadEquipos = 2;
+var cantidadEquipos=2;
 var punteroid;
 var equipo = [];
 var columnasDados=['-1','-2','-3','-4','-5','-6'];
@@ -34,6 +34,63 @@ var app = new Framework7({
 
 var mainView = app.views.create('.view-main');
 var router = mainView.router;
+
+var action12 = app.actions.create({
+  buttons: [
+    {
+      text:'Elija la cantidad de jugadores',
+      label: true
+    },
+    {
+      text:'Uno',
+      onClick: function(){
+        $$('#BTNJugadores').val('UNO');
+        cantidadEquipos=1;
+        ocultar(cantidadEquipos);
+      }
+    },
+    {
+      text:'Dos',
+      onClick: function(){
+        $$('#BTNJugadores').val('DOS');
+        cantidadEquipos=2;
+        ocultar(cantidadEquipos);
+      }
+    }, 
+    {
+      text:'Tres',
+      onClick: function(){
+        $$('#BTNJugadores').val('TRES');
+        cantidadEquipos=3;
+        ocultar(cantidadEquipos);
+      }
+    },
+    {
+      text:'Cuatro',
+      onClick: function(){
+        $$('#BTNJugadores').val('CUATRO');
+        cantidadEquipos=4;
+        ocultar(cantidadEquipos);
+      }
+    },
+    {
+      text:'Cinco',
+      onClick: function(){
+        $$('#BTNJugadores').val('CINCO');
+        cantidadEquipos=5;
+        ocultar(cantidadEquipos);
+      }
+    },
+    {
+      text:'Seis',
+      onClick: function(){
+        $$('#BTNJugadores').val('SEIS');
+        cantidadEquipos=6;
+        ocultar(cantidadEquipos);
+      }
+    }
+  ]
+});
 
 var actionDados = app.actions.create({
   buttons: [
@@ -125,6 +182,9 @@ $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 });
 $$(document).on('page:init', '.page[data-name="index"]', function (e) {
+  $$('#BTNJugadores').on('click',function(){
+    action12.open();
+  });
 })
 
 $$(document).on('page:init', '.page[data-name="anotador"]', function (e) {
@@ -152,10 +212,23 @@ $$(document).on('page:init', '.page[data-name="anotador"]', function (e) {
     })
 })
 
+function ocultar(equipos){
+  for (var i=1;i<=6;i++)
+  {
+    if (i>equipos)
+    {
+      $$('#Jugador'+i).removeClass('visible').addClass('oculto');
+    }
+    else
+    {
+      $$('#Jugador'+i).removeClass('oculto').addClass('visible');
+    }
+  }
+}
 
 const dibujarColumna = function(numero){
     idColumna = 'columna'+numero
-    $$('#tabla').append('<div id="'+idColumna+'" class="col-20"></div>');
+    $$('#tabla').append('<div id="'+idColumna+'" class="col"></div>');
     $$('#'+idColumna).append('<div id="j'+numero+'" class="row">'+equipo[numero-1]+'</div>')
     for(var i = 0; i<columnasDados.length; i++){
         $$('#'+idColumna).append('<a href="#" id="j'+numero+'p'+columnasDados[i]+'" class="row dado">-</div>')
@@ -167,7 +240,6 @@ const dibujarColumna = function(numero){
 }
 
 function puntosDados(cantidadDados){
-    console.log(cantidadDados)
     if(cantidadDados=="x")
     {
       $$('#'+punteroid).text('X');
@@ -183,7 +255,7 @@ function puntosDados(cantidadDados){
 function anotarJuegos(estado){
     if(estado=="tachar")
     {
-        $$('#'+punteroid).text('X');
+          $$('#'+punteroid).text('X');
     }
     else
     {
@@ -204,7 +276,7 @@ function anotarJuegos(estado){
 }
 function generalaServida(){
     var numeroJugador = punteroid[1]
-    alert('El jugador '+equipo[numeroJugador - 1]+' ha ganado')
+    alert(equipo[numeroJugador - 1]+' ha ganado')
     terminar();
 }
 
@@ -213,35 +285,28 @@ function calcularTotal(){
   var suma=0, puntos;
     for(var i=0;i<columnasDados.length;i++){
       puntos=$$('#j'+x+'p'+columnasDados[i]).text();
-      if(puntos=="-"||puntos=="X")
-      {
-        suma+=0;
-      }
-      else
+      if(puntos!="-"&&puntos!="X")
       {
         suma+=parseInt(puntos);
       }
-      console.log(suma)
     }
     for(var i=0;i<columnasJuegos.length;i++){
       puntos=$$('#j'+x+'p'+columnasJuegos[i]).text();
-      if(puntos=="-"||puntos=="X")
-      {
-        suma+=0;
-      }
-      else
+      if(puntos!="-"&&puntos!="X")
       {
         suma+=parseInt(puntos);
       }
-      console.log(suma)
     }
   $$('#j'+x+'-T').text(suma);
 }
 
 function terminar(){
     router.back();
-    $$("#Jugador1TXT").val("");
-    $$("#Jugador2TXT").val("");
+
+    for(var i = 1; i <= cantidadEquipos; i++)
+    {
+        $$("#Jugador"+i+"TXT").val("");   
+    }
     equipo = [];
   }
 function limpar(){
