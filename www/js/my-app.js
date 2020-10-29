@@ -273,22 +273,20 @@ function anotarJuegos(estado){
       simple=$$('#j'+punteroid[1]+'p-G').text();
       if(juego[1]=='DG'&&simple=='-')
       {
-        $$('#j'+punteroid[1]+'p-G').text(50);
+        juego[1]='G';
+        punteroid=('j'+punteroid[1]+'p-G');
       }
-      else
+      puntosTotales=puntosJuegos[juego[1]]
+      if(estado=="servida")
       {
-        puntosTotales=puntosJuegos[juego[1]]
-        if(estado=="servida")
-        {
         puntosTotales+=5;
-          if(punteroid.includes('G'))
-          {
-            generalaServida();
-            puntosTotales='Ganador'
-          }
+        if(punteroid.includes('G'))
+        {
+          generalaServida();
+          puntosTotales='Ganador'
         }
-        $$('#'+punteroid).text(puntosTotales); 
       }
+      $$('#'+punteroid).text(puntosTotales); 
     }
     calcularTotal();
 }
