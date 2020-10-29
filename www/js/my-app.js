@@ -1,5 +1,7 @@
 var cantidadEquipos=2;
 var punteroid;
+var numeroDado;
+var tipoJuego;
 var equipo = [];
 var columnasDados=['-1','-2','-3','-4','-5','-6'];
 var columnasJuegos=['-E','-F','-P','-G','-DG'];
@@ -96,7 +98,7 @@ var actionDados = app.actions.create({
   buttons: [
     [
       {
-        text:'Dado',
+        text:'Dado'
         label: true
       },
       {
@@ -253,24 +255,42 @@ function puntosDados(cantidadDados){
 }
 
 function anotarJuegos(estado){
+    var simple, doble, puntosTotales;
     if(estado=="tachar")
     {
-          $$('#'+punteroid).text('X');
+          simple=punteroid.split('-');
+          doble=$$('#j'+punteroid[1]+'p-DG').text();
+          if (simple[1]=='G'&&doble!='X')
+          {
+            $$('#j'+punteroid[1]+'p-DG').text('X')
+          }
+          else
+          {
+            $$('#'+punteroid).text('X');
+          }
     }
     else
     {
       var juego=punteroid.split('-');
-      var puntosTotales=puntosJuegos[juego[1]]
-      if(estado=="servida")
+      simple=$$('#j'+punteroid[1]+'p-G').text();
+      if(juego[1]=='DG'&&simple=='-')
       {
-        puntosTotales+=5;
-        if(punteroid.includes('G'))
-        {
-          generalaServida();
-            puntosTotales='Ganador'
-        }
+        $$('#j'+punteroid[1]+'p-G').text(50);
       }
-      $$('#'+punteroid).text(puntosTotales);
+      else
+      {
+        puntosTotales=puntosJuegos[juego[1]]
+        if(estado=="servida")
+        {
+        puntosTotales+=5;
+          if(punteroid.includes('G'))
+          {
+            generalaServida();
+            puntosTotales='Ganador'
+          }
+        }
+        $$('#'+punteroid).text(puntosTotales); 
+      }
     }
     calcularTotal();
 }
